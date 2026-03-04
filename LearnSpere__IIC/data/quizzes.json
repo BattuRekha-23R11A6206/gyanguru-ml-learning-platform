@@ -1,0 +1,1341 @@
+{
+  "linear_regression": {
+    "topic": "Linear Regression",
+    "questions": [
+      {
+        "question": "What is the main goal of linear regression?",
+        "options": [
+          "To classify data into categories",
+          "To predict a continuous output variable",
+          "To find clusters in data",
+          "To reduce dimensionality"
+        ],
+        "correct": 1,
+        "explanation": "Linear regression is used to predict continuous numerical values based on input features."
+      },
+      {
+        "question": "What does the slope (coefficient) represent in a simple linear regression equation y = mx + b?",
+        "options": [
+          "The intercept with y-axis",
+          "The rate of change between x and y",
+          "The error term",
+          "The correlation coefficient"
+        ],
+        "correct": 1,
+        "explanation": "The slope (m) represents how much y changes for each unit change in x."
+      }
+    ]
+  },
+  "decision_trees": {
+    "topic": "Decision Trees",
+    "questions": [
+      {
+        "question": "What is the primary advantage of decision trees?",
+        "options": [
+          "They always provide the most accurate predictions",
+          "They are easy to interpret and visualize",
+          "They require minimal data preprocessing",
+          "They work best with continuous data"
+        ],
+        "correct": 1,
+        "explanation": "Decision trees are highly interpretable and can be visualized as a tree structure."
+      }
+    ]
+  },
+  "gen_79146ffd2b164070bd2485b9b7e13953": {
+    "topic": "neutral networks",
+    "difficulty": "Intermediate",
+    "questions": [
+      {
+        "question": "What is the primary function of an activation function in a neural network?",
+        "options": [
+          "To optimize the model's weights",
+          "To introduce non-linearity to the model",
+          "To improve the model's accuracy",
+          "To reduce the model's complexity"
+        ],
+        "correct": 1,
+        "explanation": "An activation function is used to introduce non-linearity to the model, allowing it to learn and represent more complex patterns in the data.",
+        "sentiment_score": 0.9880831837654114,
+        "qa_confidence": 0.6124781370162964
+      },
+      {
+        "question": "What is the purpose of a hidden layer in a neural network?",
+        "options": [
+          "To process the input data",
+          "To represent the output of the model",
+          "To introduce non-linearity to the model",
+          "To optimize the model's weights"
+        ],
+        "correct": 2,
+        "explanation": "A hidden layer is used to introduce non-linearity to the model, allowing it to learn and represent more complex patterns in the data.",
+        "sentiment_score": 0.9979189038276672,
+        "qa_confidence": 0.4734105169773102
+      },
+      {
+        "question": "What is the term for the process of training a neural network with a large dataset to improve its performance?",
+        "options": [
+          "Overfitting",
+          "Underfitting",
+          "Regularization",
+          "Data augmentation"
+        ],
+        "correct": 0,
+        "explanation": "The process of training a neural network with a large dataset to improve its performance is known as data augmentation.",
+        "sentiment_score": 0.9934890270233154,
+        "qa_confidence": 0.7653905155602843
+      },
+      {
+        "question": "What is the purpose of a bias term in a neural network?",
+        "options": [
+          "To introduce non-linearity to the model",
+          "To optimize the model's weights",
+          "To improve the model's accuracy",
+          "To shift the output of the model"
+        ],
+        "correct": 3,
+        "explanation": "A bias term is used to shift the output of the model, allowing it to adjust the output based on the input data.",
+        "sentiment_score": 0.9980758428573608,
+        "qa_confidence": 0.4693093001842499
+      },
+      {
+        "question": "What is the term for the phenomenon where a neural network becomes too complex and starts to perform poorly on new, unseen data?",
+        "options": [
+          "Regularization",
+          "Data augmentation",
+          "Overfitting",
+          "Underfitting"
+        ],
+        "correct": 2,
+        "explanation": "The phenomenon where a neural network becomes too complex and starts to perform poorly on new, unseen data is known as overfitting.",
+        "sentiment_score": 0.9998018145561218,
+        "qa_confidence": 0.6126684041810222
+      }
+    ],
+    "quiz_id": "gen_79146ffd2b164070bd2485b9b7e13953"
+  },
+  "gen_8ad2c5444fc2414181a620b56d0bdd17": {
+    "topic": "decision_trees",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is a Decision Tree in Machine Learning?",
+        "options": [
+          "A type of Neural Network",
+          "A graph-like model for classification",
+          "A type of clustering algorithm",
+          "A type of regression technique"
+        ],
+        "correct": 1,
+        "explanation": "A Decision Tree is a graph-like model used for classification and regression tasks. It represents a series of decisions that are made based on the input features.",
+        "sentiment_score": 0.9874792098999023,
+        "qa_confidence": 0.25385013222694397
+      },
+      {
+        "question": "What is the purpose of a decision node in a Decision Tree?",
+        "options": [
+          "To split the data into smaller subsets",
+          "To evaluate the model's performance",
+          "To choose the best feature to split on",
+          "To make a prediction"
+        ],
+        "correct": 2,
+        "explanation": "A decision node in a Decision Tree is responsible for choosing the best feature to split the data into smaller subsets based on the decision criterion.",
+        "sentiment_score": 0.9977128505706787,
+        "qa_confidence": 0.2868710458278656
+      },
+      {
+        "question": "What is the term for the process of selecting the best feature to split at each node?",
+        "options": [
+          "Feature Selection",
+          "Node Splitting",
+          "Decision Making",
+          "Feature Splitting"
+        ],
+        "correct": 2,
+        "explanation": "The term for the process of selecting the best feature to split at each node is called Node Splitting.",
+        "sentiment_score": 0.990747332572937,
+        "qa_confidence": 0.6307244896888733
+      },
+      {
+        "question": "What is the term for the leaf nodes in a Decision Tree?",
+        "options": [
+          "Decision Nodes",
+          "Root Nodes",
+          "Leaf Nodes",
+          "Branch Nodes"
+        ],
+        "correct": 2,
+        "explanation": "The term for the leaf nodes in a Decision Tree is called Leaf Nodes. These nodes contain the predicted output for a specific input.",
+        "sentiment_score": 0.99556964635849,
+        "qa_confidence": 0.3463367223739624
+      },
+      {
+        "question": "How does a Decision Tree handle missing values in the data?",
+        "options": [
+          "It ignores the missing values and continues with the remaining data",
+          "It replaces the missing values with a specific value (e.g., mean or median)",
+          "It stops the tree growth at the node with missing values",
+          "It skips the node with missing values and goes to the next node"
+        ],
+        "correct": 2,
+        "explanation": "A Decision Tree can handle missing values by stopping the tree growth at the node with missing values. This approach is known as 'missing on the left' or 'missing on the right'.",
+        "sentiment_score": 0.9996058344841003,
+        "qa_confidence": 0.3709560036659241
+      }
+    ],
+    "quiz_id": "gen_8ad2c5444fc2414181a620b56d0bdd17"
+  },
+  "gen_268e14bcb45a475cbffb0648de565ff9": {
+    "topic": "decision_trees",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is the primary purpose of a Decision Tree in Machine Learning?",
+        "options": [
+          "Feature Selection",
+          "Handling Missing Values",
+          "Classification and Regression",
+          "Data Scaling"
+        ],
+        "correct": 2,
+        "explanation": "Decision Trees are used for both classification and regression tasks, making them a versatile tool in Machine Learning.",
+        "sentiment_score": 0.9918917417526245,
+        "qa_confidence": 0.9703510335239116
+      },
+      {
+        "question": "Which of the following is a common technique used to prevent overfitting in Decision Trees?",
+        "options": [
+          "Pruning",
+          "Bagging",
+          "Boosting",
+          "Regularization"
+        ],
+        "correct": 0,
+        "explanation": "Pruning is a common technique used to prevent overfitting in Decision Trees by reducing the complexity of the tree.",
+        "sentiment_score": 0.9930031895637512,
+        "qa_confidence": 0.8931522860075347
+      },
+      {
+        "question": "What is the term for the process of creating multiple Decision Trees and combining their predictions?",
+        "options": [
+          "Ensemble Learning",
+          "Stacking",
+          "Random Forest",
+          "Gradient Boosting"
+        ],
+        "correct": 0,
+        "explanation": "Ensemble Learning is the process of creating multiple models and combining their predictions to improve overall performance.",
+        "sentiment_score": 0.9892439842224121,
+        "qa_confidence": 0.9284847667149734
+      },
+      {
+        "question": "In a Decision Tree, what does the 'leaf node' represent?",
+        "options": [
+          "A feature",
+          "A class label",
+          "A probability",
+          "A decision"
+        ],
+        "correct": 1,
+        "explanation": "A leaf node in a Decision Tree represents a class label or a predicted outcome.",
+        "sentiment_score": 0.9920505881309509,
+        "qa_confidence": 0.4112709164619446
+      },
+      {
+        "question": "What is the term for the process of splitting a dataset into subsets based on a feature?",
+        "options": [
+          "Feature Selection",
+          "Feature Engineering",
+          "Splitting",
+          "Decision Making"
+        ],
+        "correct": 2,
+        "explanation": "Splitting is the process of dividing a dataset into subsets based on a feature, which is a key step in building a Decision Tree.",
+        "sentiment_score": 0.9952183365821838,
+        "qa_confidence": 0.5049104690551758
+      }
+    ],
+    "quiz_id": "gen_268e14bcb45a475cbffb0648de565ff9"
+  },
+  "gen_69f2f003cba343bf9cb643b14cbf3bf8": {
+    "topic": "neutral networks",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is the primary objective of a neutral network?",
+        "options": [
+          "To classify data",
+          "To cluster data",
+          "To learn from data",
+          "To predict outcomes"
+        ],
+        "correct": 2,
+        "explanation": "A neutral network learns from data by adjusting the strength of the connections between nodes.",
+        "sentiment_score": 0.9852487444877625,
+        "qa_confidence": 0.44788381457328796
+      },
+      {
+        "question": "What does a hidden layer in a neutral network represent?",
+        "options": [
+          "Input data",
+          "Output data",
+          "Abstract features",
+          "Intermediate calculations"
+        ],
+        "correct": 2,
+        "explanation": "A hidden layer in a neutral network represents abstract features learned from the input data.",
+        "sentiment_score": 0.9972445964813232,
+        "qa_confidence": 0.0031326350290328264
+      },
+      {
+        "question": "What type of data does a neutral network typically require for training?",
+        "options": [
+          "Structured data",
+          "Unstructured data",
+          "Labeled data",
+          "Unlabeled data"
+        ],
+        "correct": 3,
+        "explanation": "A neutral network typically requires labeled data for training, where the output is already known.",
+        "sentiment_score": 0.996852695941925,
+        "qa_confidence": 0.29230621457099915
+      },
+      {
+        "question": "What is the term for the process of adjusting the strength of connections in a neutral network?",
+        "options": [
+          "Forward pass",
+          "Backward pass",
+          "Weight update",
+          "Normalization"
+        ],
+        "correct": 2,
+        "explanation": "The process of adjusting the strength of connections in a neutral network is called weight update.",
+        "sentiment_score": 0.996203601360321,
+        "qa_confidence": 0.5413027437607525
+      },
+      {
+        "question": "What is a common activation function used in the output layer of a neutral network?",
+        "options": [
+          "Sigmoid",
+          "Tanh",
+          "ReLU",
+          "Softmax"
+        ],
+        "correct": 3,
+        "explanation": "Softmax is a common activation function used in the output layer of a neutral network for multi-class classification problems.",
+        "sentiment_score": 0.9987215399742126,
+        "qa_confidence": 0.8126977654392249
+      }
+    ],
+    "quiz_id": "gen_69f2f003cba343bf9cb643b14cbf3bf8"
+  },
+  "gen_a54a3490442742bb958aeecdea966373": {
+    "topic": "decision_trees",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is a Decision Tree?",
+        "options": [
+          "A type of neural network",
+          "A classification algorithm",
+          "A tree-like model that splits data",
+          "A regression algorithm"
+        ],
+        "correct": 2,
+        "explanation": "A Decision Tree is a tree-like model that splits data into subsets based on feature values.",
+        "sentiment_score": 0.97259920835495,
+        "qa_confidence": 0.25359421968460083
+      },
+      {
+        "question": "What is the goal of pruning in Decision Trees?",
+        "options": [
+          "To reduce overfitting",
+          "To increase the size of the tree",
+          "To improve model interpretability",
+          "To decrease the accuracy of the model"
+        ],
+        "correct": 0,
+        "explanation": "Pruning in Decision Trees is used to reduce overfitting by removing branches that do not contribute to the model's performance.",
+        "sentiment_score": 0.9982971549034119,
+        "qa_confidence": 0.41595858335494995
+      },
+      {
+        "question": "What is the term for the decision-making process in a Decision Tree?",
+        "options": [
+          "Node splitting",
+          "Leaf node",
+          "Tree pruning",
+          "Decision node"
+        ],
+        "correct": 3,
+        "explanation": "A decision node is a node in a Decision Tree where a decision is made to split the data into subsets.",
+        "sentiment_score": 0.9939380884170532,
+        "qa_confidence": 0.22340603172779083
+      },
+      {
+        "question": "What is the term for the root node of a Decision Tree?",
+        "options": [
+          "Leaf node",
+          "Decision node",
+          "Split node",
+          "Root node"
+        ],
+        "correct": 3,
+        "explanation": "The root node is the topmost node in a Decision Tree, where the data is first split.",
+        "sentiment_score": 0.994269609451294,
+        "qa_confidence": 0.7180486917495728
+      },
+      {
+        "question": "What is the term for the path from the root node to a leaf node in a Decision Tree?",
+        "options": [
+          "Branch",
+          "Leaf",
+          "Node",
+          "Path"
+        ],
+        "correct": 3,
+        "explanation": "A path in a Decision Tree is the sequence of nodes from the root node to a leaf node.",
+        "sentiment_score": 0.995604395866394,
+        "qa_confidence": 0.9878489375114441
+      }
+    ],
+    "quiz_id": "gen_a54a3490442742bb958aeecdea966373"
+  },
+  "gen_939e1da8eb9b468da23bca46c8ca2803": {
+    "topic": "decision_trees",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is the primary purpose of a decision tree in machine learning?",
+        "options": [
+          "To make predictions",
+          "To classify data",
+          "To cluster data",
+          "To generate random numbers"
+        ],
+        "correct": 1,
+        "explanation": "Decision trees are primarily used for classification and regression tasks.",
+        "sentiment_score": 0.9918917417526245,
+        "qa_confidence": 0.4719059467315674
+      },
+      {
+        "question": "What is the main advantage of using a decision tree?",
+        "options": [
+          "Interpretability",
+          "Scalability",
+          "Speed",
+          "Flexibility"
+        ],
+        "correct": 0,
+        "explanation": "Decision trees are easy to interpret and understand, making them a popular choice in machine learning.",
+        "sentiment_score": 0.993883490562439,
+        "qa_confidence": 0.7760387321613962
+      },
+      {
+        "question": "What is the term for the process of selecting the best feature to split on in a decision tree?",
+        "options": [
+          "Feature selection",
+          "Feature engineering",
+          "Feature extraction",
+          "Feature splitting"
+        ],
+        "correct": 3,
+        "explanation": "Feature splitting is the process of selecting the best feature to split on in a decision tree.",
+        "sentiment_score": 0.9850451350212097,
+        "qa_confidence": 0.20131924748420715
+      },
+      {
+        "question": "What is the term for the leaf nodes in a decision tree?",
+        "options": [
+          "Decision nodes",
+          "Split nodes",
+          "Leaf nodes",
+          "Root node"
+        ],
+        "correct": 2,
+        "explanation": "Leaf nodes are the final prediction or outcome in a decision tree.",
+        "sentiment_score": 0.99556964635849,
+        "qa_confidence": 0.4600180387496948
+      },
+      {
+        "question": "What is the term for overfitting in decision trees?",
+        "options": [
+          "Underfitting",
+          "Overfitting",
+          "Underlearning",
+          "Overlearning"
+        ],
+        "correct": 1,
+        "explanation": "Overfitting occurs when a decision tree is too complex and fits the training data too closely.",
+        "sentiment_score": 0.9983704686164856,
+        "qa_confidence": 0.38329313637223095
+      }
+    ],
+    "quiz_id": "gen_939e1da8eb9b468da23bca46c8ca2803"
+  },
+  "gen_a89a3a5ad7d044199367512c4c1b4989": {
+    "topic": "decision_trees",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is a decision tree?",
+        "options": [
+          "A type of neural network",
+          "A type of clustering algorithm",
+          "A tree-like model for classification and regression tasks",
+          "A type of support vector machine"
+        ],
+        "correct": 2,
+        "explanation": "Decision trees are a popular type of machine learning model that can be used for both classification and regression tasks.",
+        "sentiment_score": 0.97259920835495,
+        "qa_confidence": 0.5856770873069763
+      },
+      {
+        "question": "What is the main purpose of the ID3 algorithm in decision trees?",
+        "options": [
+          "To find the best feature to split on",
+          "To determine the optimal number of leaves in the tree",
+          "To calculate the Gini impurity for each node",
+          "To perform pruning on the tree"
+        ],
+        "correct": 0,
+        "explanation": "The ID3 algorithm is used to select the best feature to split on at each node in the decision tree.",
+        "sentiment_score": 0.9987736344337463,
+        "qa_confidence": 0.21175222098827362
+      },
+      {
+        "question": "What is the term for a decision tree that is grown in both the training and testing sets?",
+        "options": [
+          "Training tree",
+          "Pruning tree",
+          "Ensemble tree",
+          "Overfitting tree"
+        ],
+        "correct": 0,
+        "explanation": "An overfitting tree is a decision tree that is grown in both the training and testing sets, which can lead to poor performance on unseen data.",
+        "sentiment_score": 0.9409906268119812,
+        "qa_confidence": 0.6103658676147461
+      },
+      {
+        "question": "What is the purpose of a decision tree's root node?",
+        "options": [
+          "To represent the final class label",
+          "To hold the feature values that lead to the most frequent class label",
+          "To represent the topmost feature that splits the data",
+          "To contain the predicted probabilities for each class"
+        ],
+        "correct": 2,
+        "explanation": "The root node represents the topmost feature that splits the data, which is used to make predictions in the decision tree.",
+        "sentiment_score": 0.9981096982955933,
+        "qa_confidence": 0.7708451151847839
+      },
+      {
+        "question": "What is the term for the process of removing branches from a decision tree to prevent overfitting?",
+        "options": [
+          "Pruning",
+          "Thinning",
+          "Regularization",
+          "Feature selection"
+        ],
+        "correct": 0,
+        "explanation": "Pruning is the process of removing branches from a decision tree to prevent overfitting and improve the model's generalization performance.",
+        "sentiment_score": 0.9951066970825195,
+        "qa_confidence": 0.7079721956688445
+      }
+    ],
+    "quiz_id": "gen_a89a3a5ad7d044199367512c4c1b4989"
+  },
+  "gen_c2fdd1b3db1e448a8f2b970f57487a53": {
+    "topic": "decision_trees",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is the primary purpose of a decision tree in machine learning?",
+        "options": [
+          "Classification",
+          "Regression",
+          "Clustering",
+          "Dimensionality Reduction"
+        ],
+        "correct": 0,
+        "explanation": "Decision trees are primarily used for classification tasks, where they split data into subsets based on feature values to predict the target variable.",
+        "sentiment_score": 0.9918917417526245,
+        "qa_confidence": 0.9804235100746155
+      },
+      {
+        "question": "What is the term for the process of splitting a dataset into subsets based on feature values?",
+        "options": [
+          "Feature selection",
+          "Feature extraction",
+          "Splitting",
+          "Splitting the data"
+        ],
+        "correct": 2,
+        "explanation": "The process of splitting a dataset into subsets based on feature values is known as splitting.",
+        "sentiment_score": 0.9963170289993286,
+        "qa_confidence": 0.5450565218925476
+      },
+      {
+        "question": "What is the term for the final value predicted by a decision tree?",
+        "options": [
+          "Leaf node",
+          "Decision node",
+          "Root node",
+          "Target value"
+        ],
+        "correct": 3,
+        "explanation": "The final value predicted by a decision tree is known as the target value.",
+        "sentiment_score": 0.9974595904350281,
+        "qa_confidence": 0.34231919050216675
+      },
+      {
+        "question": "What is the term for the point in a decision tree where a feature is used to split the data?",
+        "options": [
+          "Leaf node",
+          "Decision node",
+          "Root node",
+          "Splitting point"
+        ],
+        "correct": 1,
+        "explanation": "The point in a decision tree where a feature is used to split the data is known as a decision node.",
+        "sentiment_score": 0.996504545211792,
+        "qa_confidence": 0.5327383601397742
+      },
+      {
+        "question": "What is the term for a decision tree that is grown to its maximum possible size?",
+        "options": [
+          "Pruned tree",
+          "Unpruned tree",
+          "Overfitting tree",
+          "Underfitting tree"
+        ],
+        "correct": 1,
+        "explanation": "A decision tree that is grown to its maximum possible size is known as an unpruned tree.",
+        "sentiment_score": 0.9795932769775391,
+        "qa_confidence": 0.6086231470108032
+      }
+    ],
+    "quiz_id": "gen_c2fdd1b3db1e448a8f2b970f57487a53"
+  },
+  "gen_db417368e63c441bacc42600b9abc1c7": {
+    "topic": "what_is_ml",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is Machine Learning?",
+        "options": [
+          "A type of programming language",
+          "A field of artificial intelligence",
+          "A type of data analysis",
+          "A type of software development"
+        ],
+        "correct": 1,
+        "explanation": "Machine Learning is a subfield of artificial intelligence that focuses on developing algorithms and statistical models that allow computers to learn from data, rather than following a set of hand-coded instructions.",
+        "sentiment_score": 0.99442458152771,
+        "qa_confidence": 0.49026042222976685
+      },
+      {
+        "question": "What do machines learn in Machine Learning?",
+        "options": [
+          "How to solve a mathematical equation",
+          "How to recognize patterns in data",
+          "How to play a game",
+          "How to read a book"
+        ],
+        "correct": 1,
+        "explanation": "In Machine Learning, machines learn to recognize patterns in data, make predictions, or classify objects based on that data.",
+        "sentiment_score": 0.9754437208175659,
+        "qa_confidence": 0.40543606877326965
+      },
+      {
+        "question": "What type of data is used in Machine Learning?",
+        "options": [
+          "Only numerical data",
+          "Only categorical data",
+          "A combination of numerical and categorical data",
+          "Only text data"
+        ],
+        "correct": 2,
+        "explanation": "Machine Learning algorithms can handle a variety of data types, including numerical, categorical, text, and image data.",
+        "sentiment_score": 0.9983459711074829,
+        "qa_confidence": 0.1189282089471817
+      },
+      {
+        "question": "What is the goal of a Machine Learning model?",
+        "options": [
+          "To make a prediction",
+          "To classify an object",
+          "To optimize a function",
+          "To generate new data"
+        ],
+        "correct": 0,
+        "explanation": "The primary goal of a Machine Learning model is to make accurate predictions or classify objects based on the input data.",
+        "sentiment_score": 0.9951539039611816,
+        "qa_confidence": 0.4760681092739105
+      },
+      {
+        "question": "What is overfitting in Machine Learning?",
+        "options": [
+          "When a model is too simple to fit the data",
+          "When a model is too complex and fits the noise in the data",
+          "When a model is not complex enough to fit the data",
+          "When a model is too slow to fit the data"
+        ],
+        "correct": 1,
+        "explanation": "Overfitting occurs when a Machine Learning model is too complex and fits the noise in the training data, rather than the underlying patterns.",
+        "sentiment_score": 0.9992645382881165,
+        "qa_confidence": 0.08051327615976334
+      }
+    ],
+    "quiz_id": "gen_db417368e63c441bacc42600b9abc1c7"
+  },
+  "gen_1c3343f2928742f99516532141b737ad": {
+    "topic": "decision_trees",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is the main purpose of a decision tree?",
+        "options": [
+          "To classify data",
+          "To perform regression",
+          "To cluster data",
+          "To perform dimensionality reduction"
+        ],
+        "correct": 0,
+        "explanation": "Decision trees are primarily used for classification tasks, where the goal is to predict a class or label for a given observation.",
+        "sentiment_score": 0.9955962300300598,
+        "qa_confidence": 0.5074051022529602
+      },
+      {
+        "question": "What is the term for a decision tree that can handle multiple classes?",
+        "options": [
+          "Decision Forest",
+          "Random Forest",
+          "Multi-Decision Tree",
+          "Multi-Class Tree"
+        ],
+        "correct": 0,
+        "explanation": "A multi-class tree is a type of decision tree that can handle multiple classes by using techniques such as one-vs-all or all-vs-all.",
+        "sentiment_score": 0.9885082840919495,
+        "qa_confidence": 0.8133563995361328
+      },
+      {
+        "question": "Which of the following is a common method for pruning a decision tree?",
+        "options": [
+          "Cost complexity pruning",
+          "Post pruning",
+          "Pre pruning",
+          "All of the above"
+        ],
+        "correct": 3,
+        "explanation": "All of the above methods are commonly used for pruning a decision tree. Cost complexity pruning, post pruning, and pre pruning are all techniques used to reduce the size of a decision tree while maintaining its accuracy.",
+        "sentiment_score": 0.9989223480224609,
+        "qa_confidence": 0.003259713528677821
+      },
+      {
+        "question": "What is the term for a node in a decision tree that has no children?",
+        "options": [
+          "Leaf node",
+          "Internal node",
+          "Root node",
+          "Decision node"
+        ],
+        "correct": 0,
+        "explanation": "A leaf node is a node in a decision tree that has no children. It represents a class or a decision that is made in the tree.",
+        "sentiment_score": 0.9959313273429871,
+        "qa_confidence": 0.7734233736991882
+      },
+      {
+        "question": "Which of the following is a common algorithm used for building decision trees?",
+        "options": [
+          "ID3",
+          "C4.5",
+          "CART",
+          "All of the above"
+        ],
+        "correct": 3,
+        "explanation": "ID3, C4.5, and CART are all algorithms used for building decision trees. ID3 is a simple algorithm that uses entropy to split the data, C4.5 is an extension of ID3 that uses gain ratio, and CART is a popular algorithm that uses Gini impurity.",
+        "sentiment_score": 0.9982616305351257,
+        "qa_confidence": 0.8106384101556614
+      }
+    ],
+    "quiz_id": "gen_1c3343f2928742f99516532141b737ad"
+  },
+  "gen_0dc0801c95d8447fad8c83b93364c31f": {
+    "topic": "decision_trees",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is the primary goal of a decision tree?",
+        "options": [
+          "To minimize the number of parameters",
+          "To minimize the number of features",
+          "To classify data into different classes",
+          "To regress continuous data"
+        ],
+        "correct": 2,
+        "explanation": "Decision trees are primarily used for classification tasks, although they can also be used for regression tasks.",
+        "sentiment_score": 0.9789324402809143,
+        "qa_confidence": 0.627160906791687
+      },
+      {
+        "question": "What is the term for the splitting process in decision trees?",
+        "options": [
+          "Pruning",
+          "Splitting",
+          "Leaf node",
+          "Decision node"
+        ],
+        "correct": 1,
+        "explanation": "Splitting is the process of dividing the data into smaller subsets based on a particular feature.",
+        "sentiment_score": 0.9945013523101807,
+        "qa_confidence": 0.7038766149489675
+      },
+      {
+        "question": "What is the term for the final predicted outcome of a decision tree?",
+        "options": [
+          "Root node",
+          "Decision node",
+          "Leaf node",
+          "Decision value"
+        ],
+        "correct": 2,
+        "explanation": "A leaf node is the final predicted outcome of a decision tree.",
+        "sentiment_score": 0.9966224431991577,
+        "qa_confidence": 0.4390343427658081
+      },
+      {
+        "question": "What is the term for the process of stopping the growth of a decision tree?",
+        "options": [
+          "Pruning",
+          "Splitting",
+          "Leaf node",
+          "Decision node"
+        ],
+        "correct": 0,
+        "explanation": "Pruning is the process of stopping the growth of a decision tree when it starts to overfit the training data.",
+        "sentiment_score": 0.9944373369216919,
+        "qa_confidence": 0.7459716059820494
+      },
+      {
+        "question": "What is the term for a decision tree that is grown to its maximum size before pruning?",
+        "options": [
+          "Overfitting tree",
+          "Underfitting tree",
+          "Decision tree",
+          "Unpruned tree"
+        ],
+        "correct": 3,
+        "explanation": "An unpruned tree is a decision tree that is grown to its maximum size before pruning.",
+        "sentiment_score": 0.9924747347831726,
+        "qa_confidence": 0.5156142711639404
+      }
+    ],
+    "quiz_id": "gen_0dc0801c95d8447fad8c83b93364c31f"
+  },
+  "gen_738e10f69f3a4b6caf641710e786f35c": {
+    "topic": "what_is_ml",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is Machine Learning?",
+        "options": [
+          "A field of study that focuses on human learning",
+          "A field of study that focuses on artificial intelligence",
+          "A field of study that focuses on data analysis",
+          "A field of study that focuses on computer science"
+        ],
+        "correct": 1,
+        "explanation": "Machine Learning is a field of study that focuses on artificial intelligence, which allows computer systems to learn and improve from experience without being explicitly programmed.",
+        "sentiment_score": 0.99442458152771,
+        "qa_confidence": 0.6672001481056213
+      },
+      {
+        "question": "What is the primary goal of Machine Learning?",
+        "options": [
+          "To understand human behavior",
+          "To make predictions or decisions based on data",
+          "To improve the performance of a computer system",
+          "To automate tasks"
+        ],
+        "correct": 1,
+        "explanation": "The primary goal of Machine Learning is to make predictions or decisions based on data, which is achieved through a variety of algorithms and techniques.",
+        "sentiment_score": 0.9582309722900391,
+        "qa_confidence": 0.7328393459320068
+      },
+      {
+        "question": "What type of data is commonly used in Machine Learning?",
+        "options": [
+          "Structured data only",
+          "Unstructured data only",
+          "Both structured and unstructured data",
+          "Neither structured nor unstructured data"
+        ],
+        "correct": 2,
+        "explanation": "Machine Learning often involves the use of both structured and unstructured data, which can include images, text, audio, and more.",
+        "sentiment_score": 0.9975547194480896,
+        "qa_confidence": 0.14686492085456848
+      },
+      {
+        "question": "What is Supervised Learning?",
+        "options": [
+          "A type of Machine Learning where the computer system is given a goal to achieve",
+          "A type of Machine Learning where the computer system is given a dataset and asked to make predictions",
+          "A type of Machine Learning where the computer system is given a reward for achieving a goal",
+          "A type of Machine Learning where the computer system is given a penalty for failing to achieve a goal"
+        ],
+        "correct": 1,
+        "explanation": "Supervised Learning is a type of Machine Learning where the computer system is given a dataset and asked to make predictions, based on the relationship between the input data and the target output.",
+        "sentiment_score": 0.9915858507156372,
+        "qa_confidence": 0.49539217352867126
+      },
+      {
+        "question": "What is the difference between Machine Learning and Deep Learning?",
+        "options": [
+          "Machine Learning is a subset of Deep Learning",
+          "Machine Learning is a type of Deep Learning",
+          "Machine Learning is a separate field of study that focuses on simpler algorithms",
+          "Machine Learning is a separate field of study that focuses on more complex algorithms"
+        ],
+        "correct": 3,
+        "explanation": "Machine Learning is a separate field of study that focuses on simpler algorithms, whereas Deep Learning is a subset of Machine Learning that focuses on more complex algorithms, such as neural networks.",
+        "sentiment_score": 0.9101282954216003,
+        "qa_confidence": 0.014502769336104393
+      }
+    ],
+    "quiz_id": "gen_738e10f69f3a4b6caf641710e786f35c"
+  },
+  "gen_170c57c8074343f4b7160bdef865ed8b": {
+    "topic": "neutral networks",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is the primary purpose of a neutral network?",
+        "options": [
+          "To optimize complex systems",
+          "To classify data",
+          "To generate new data",
+          "To predict continuous values"
+        ],
+        "correct": 0,
+        "explanation": "A neutral network is used to optimize complex systems through learning from data.",
+        "sentiment_score": 0.9946304559707642,
+        "qa_confidence": 0.4515314996242523
+      },
+      {
+        "question": "What type of data can neutral networks handle?",
+        "options": [
+          "Only categorical data",
+          "Only numerical data",
+          "Both categorical and numerical data",
+          "Only text data"
+        ],
+        "correct": 2,
+        "explanation": "Neutral networks can handle both categorical and numerical data.",
+        "sentiment_score": 0.9977794289588928,
+        "qa_confidence": 0.15245577692985535
+      },
+      {
+        "question": "What is the process of adjusting the weights of a neutral network's connections called?",
+        "options": [
+          "Backpropagation",
+          "Forward Propagation",
+          "Activation",
+          "Optimization"
+        ],
+        "correct": 0,
+        "explanation": "Backpropagation is the process of adjusting the weights of a neutral network's connections.",
+        "sentiment_score": 0.9982715845108032,
+        "qa_confidence": 0.8110588891431689
+      },
+      {
+        "question": "What is a common application of neutral networks in machine learning?",
+        "options": [
+          "Recommendation systems",
+          "Image classification",
+          "Time series forecasting",
+          "All of the above"
+        ],
+        "correct": 3,
+        "explanation": "Neutral networks are commonly used in recommendation systems, image classification, and time series forecasting.",
+        "sentiment_score": 0.9962347149848938,
+        "qa_confidence": 0.68074087734567
+      },
+      {
+        "question": "What is the term for a neutral network that is trained to perform a specific task?",
+        "options": [
+          "Model",
+          "Network",
+          "Layer",
+          "Architecture"
+        ],
+        "correct": 0,
+        "explanation": "A model is a type of neutral network that is trained to perform a specific task.",
+        "sentiment_score": 0.9880946278572083,
+        "qa_confidence": 0.9920658469200134
+      }
+    ],
+    "quiz_id": "gen_170c57c8074343f4b7160bdef865ed8b"
+  },
+  "gen_10d33204f23a4385a206e47dfba031ad": {
+    "topic": "networks",
+    "difficulty": "Intermediate",
+    "questions": [
+      {
+        "question": "What is the primary purpose of a fully connected (dense) neural network?",
+        "options": [
+          "It is used for image classification",
+          "It is used for natural language processing",
+          "Every neuron is connected to every other neuron",
+          "It is used for speech recognition"
+        ],
+        "correct": 2,
+        "explanation": "A fully connected neural network, also known as a dense neural network, is a type of neural network where every neuron is connected to every other neuron. This allows for the exchange of information between all neurons, making it a powerful tool for complex tasks.",
+        "sentiment_score": 0.9940910935401917,
+        "qa_confidence": 0.4364801049232483
+      },
+      {
+        "question": "What is the main advantage of using a convolutional neural network (CNN) over a fully connected network?",
+        "options": [
+          "It requires less training data",
+          "It is faster to train",
+          "It can efficiently process data with grid-like topology",
+          "It is more interpretable"
+        ],
+        "correct": 2,
+        "explanation": "Convolutional neural networks (CNNs) are particularly well-suited for image and signal processing tasks, where the input data has a grid-like topology. This allows CNNs to efficiently process large amounts of data with a significant reduction in parameters and computational requirements.",
+        "sentiment_score": 0.9951574206352234,
+        "qa_confidence": 0.45482704043388367
+      },
+      {
+        "question": "What is the term for the process of training a neural network on a subset of the data and then testing it on the remaining data?",
+        "options": [
+          "Cross-validation",
+          "Overfitting",
+          "Underfitting",
+          "Holdout method"
+        ],
+        "correct": 3,
+        "explanation": "The holdout method is a simple technique for evaluating a model's performance, where a subset of the data is used for training and the remaining data is used for testing. This helps to avoid overfitting and get a more realistic estimate of the model's performance.",
+        "sentiment_score": 0.994038462638855,
+        "qa_confidence": 0.32894065976142883
+      },
+      {
+        "question": "What type of neural network is commonly used for sequential data, such as time series or text data?",
+        "options": [
+          "Recurrent neural network (RNN)",
+          "Long short-term memory (LSTM) network",
+          "Autoencoder",
+          "Generative adversarial network (GAN)"
+        ],
+        "correct": 0,
+        "explanation": "Recurrent neural networks (RNNs) are designed to handle sequential data by maintaining an internal state that captures the temporal dependencies between input elements. This makes RNNs particularly well-suited for tasks such as language modeling or speech recognition.",
+        "sentiment_score": 0.9965697526931763,
+        "qa_confidence": 0.6793638641538564
+      },
+      {
+        "question": "What is the term for the phenomenon where a model performs well on the training data but poorly on new, unseen data?",
+        "options": [
+          "Overfitting",
+          "Underfitting",
+          "Bias-Variance tradeoff",
+          "Concept drift"
+        ],
+        "correct": 0,
+        "explanation": "Overfitting occurs when a model is too complex and fits the noise in the training data, resulting in poor performance on new, unseen data. This is a common problem in machine learning and can be mitigated using techniques such as regularization and cross-validation.",
+        "sentiment_score": 0.9995321035385132,
+        "qa_confidence": 0.21708525717258453
+      }
+    ],
+    "quiz_id": "gen_10d33204f23a4385a206e47dfba031ad"
+  },
+  "gen_74db858710944165b93d15f64e884705": {
+    "topic": "neural networks",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is the primary function of the input layer in a neural network?",
+        "options": [
+          "To process the output",
+          "To process the input data",
+          "To store the model's weights",
+          "To generate the final output"
+        ],
+        "correct": 1,
+        "explanation": "The input layer is responsible for receiving and processing the input data that is used to train the neural network.",
+        "sentiment_score": 0.9893724322319031,
+        "qa_confidence": 0.7134093642234802
+      },
+      {
+        "question": "What is the term for a hidden layer with a sigmoid activation function that outputs a probability?",
+        "options": [
+          "Sigmoid layer",
+          "Rectified Linear Unit (ReLU) layer",
+          "Softmax layer",
+          "Dense layer"
+        ],
+        "correct": 0,
+        "explanation": "A sigmoid layer with a sigmoid activation function is often used to output a probability.",
+        "sentiment_score": 0.9911527037620544,
+        "qa_confidence": 0.5824638605117798
+      },
+      {
+        "question": "What is the purpose of the activation function in a neural network?",
+        "options": [
+          "To compute the model's weights",
+          "To introduce non-linearity to the model",
+          "To generate the final output",
+          "To process the input data"
+        ],
+        "correct": 1,
+        "explanation": "Activation functions are used to introduce non-linearity to the model, allowing it to learn more complex relationships between inputs and outputs.",
+        "sentiment_score": 0.9976860284805298,
+        "qa_confidence": 0.5809097290039062
+      },
+      {
+        "question": "What is a type of neural network that is particularly effective for image classification tasks?",
+        "options": [
+          "Convolutional Neural Network (CNN)",
+          "Recurrent Neural Network (RNN)",
+          "Feedforward Neural Network (FNN)",
+          "Long Short-Term Memory (LSTM)"
+        ],
+        "correct": 0,
+        "explanation": "Convolutional Neural Networks (CNNs) are particularly well-suited for image classification tasks due to their ability to extract spatial hierarchies of features.",
+        "sentiment_score": 0.562024712562561,
+        "qa_confidence": 0.5726386308670044
+      },
+      {
+        "question": "What is the term for a type of neural network that is trained with an unsupervised learning algorithm?",
+        "options": [
+          "Autoencoder",
+          "Generative Adversarial Network (GAN)",
+          "Neural Turing Machine (NTM)",
+          "Supervised Neural Network"
+        ],
+        "correct": 0,
+        "explanation": "An autoencoder is a type of neural network that is trained with an unsupervised learning algorithm, and is often used for dimensionality reduction and feature learning.",
+        "sentiment_score": 0.9965492486953735,
+        "qa_confidence": 0.2876920998096466
+      }
+    ],
+    "quiz_id": "gen_74db858710944165b93d15f64e884705"
+  },
+  "gen_c9a65fa804794c72950410ba8bdc09d8": {
+    "topic": "neural networks",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is the basic unit of computation in a Neural Network?",
+        "options": [
+          "Artificial Neuron",
+          "Artificial Brain",
+          "Artificial Intelligence",
+          "Machine Learning"
+        ],
+        "correct": 0,
+        "explanation": "An artificial neuron is the basic unit of computation in a Neural Network, similar to a biological neuron.",
+        "sentiment_score": 0.9887427091598511,
+        "qa_confidence": 0.3263494074344635
+      },
+      {
+        "question": "What is the purpose of the activation function in a neuron?",
+        "options": [
+          "To introduce non-linearity",
+          "To reduce dimensionality",
+          "To increase dimensionality",
+          "To normalize the data"
+        ],
+        "correct": 0,
+        "explanation": "The activation function introduces non-linearity to the model, allowing it to learn complex relationships between inputs and outputs.",
+        "sentiment_score": 0.9978146553039551,
+        "qa_confidence": 0.3612452447414398
+      },
+      {
+        "question": "What is the difference between a feedforward network and a recurrent network?",
+        "options": [
+          "Feedforward networks have feedback connections, while recurrent networks do not.",
+          "Recurrent networks have feedback connections, while feedforward networks do not.",
+          "Feedforward networks are used for image classification, while recurrent networks are used for text classification.",
+          "Recurrent networks are used for image classification, while feedforward networks are used for text classification."
+        ],
+        "correct": 1,
+        "explanation": "Recurrent networks have feedback connections, allowing them to maintain a hidden state and process sequential data.",
+        "sentiment_score": 0.9953972697257996,
+        "qa_confidence": 0.4073615903034806
+      },
+      {
+        "question": "What is the purpose of the bias term in a neuron?",
+        "options": [
+          "To adjust the learning rate",
+          "To introduce non-linearity",
+          "To shift the activation function",
+          "To normalize the data"
+        ],
+        "correct": 2,
+        "explanation": "The bias term shifts the activation function, allowing the model to learn the intercept of the relationship between inputs and outputs.",
+        "sentiment_score": 0.9986191987991333,
+        "qa_confidence": 0.31160080432891846
+      },
+      {
+        "question": "What is the term for the process of training a neural network with a large amount of data?",
+        "options": [
+          "Overfitting",
+          "Underfitting",
+          "Batch Gradient Descent",
+          "Deep Learning"
+        ],
+        "correct": 2,
+        "explanation": "Batch Gradient Descent is the term for the process of training a neural network with a large amount of data.",
+        "sentiment_score": 0.9768964648246765,
+        "qa_confidence": 0.9542722105979919
+      }
+    ],
+    "quiz_id": "gen_c9a65fa804794c72950410ba8bdc09d8"
+  },
+  "gen_49991ea256574ff59dcc8ed7232e8b87": {
+    "topic": "gen ai",
+    "difficulty": "Intermediate",
+    "questions": [
+      {
+        "question": "What is the primary goal of a Generative Adversarial Network (GAN)?",
+        "options": [
+          "To generate new data samples",
+          "To classify existing data samples",
+          "To cluster existing data samples",
+          "To optimize model weights"
+        ],
+        "correct": 0,
+        "explanation": "GANs are designed to generate new data samples that are similar to existing data samples.",
+        "sentiment_score": 0.9953314661979675,
+        "qa_confidence": 0.5107061862945557
+      },
+      {
+        "question": "What is the key characteristic of a Generative Model?",
+        "options": [
+          "It can only classify existing data",
+          "It can only cluster existing data",
+          "It can generate new data samples",
+          "It can only optimize model weights"
+        ],
+        "correct": 2,
+        "explanation": "Generative models can generate new data samples that are similar to existing data samples.",
+        "sentiment_score": 0.9452574849128723,
+        "qa_confidence": 0.5586434602737427
+      },
+      {
+        "question": "What is the primary difference between a Generative Model and a Discriminative Model?",
+        "options": [
+          "Generative models are slower than discriminative models",
+          "Generative models can only classify existing data",
+          "Generative models can generate new data samples",
+          "Generative models are more complex than discriminative models"
+        ],
+        "correct": 2,
+        "explanation": "Generative models are designed to generate new data samples, while discriminative models are designed to classify existing data samples.",
+        "sentiment_score": 0.9940106272697449,
+        "qa_confidence": 0.4580934941768646
+      },
+      {
+        "question": "What is a common application of Generative Adversarial Networks (GANs)?",
+        "options": [
+          "Image classification",
+          "Data clustering",
+          "Data generation",
+          "Model optimization"
+        ],
+        "correct": 2,
+        "explanation": "GANs are commonly used to generate new data samples, such as images or text.",
+        "sentiment_score": 0.9975898265838623,
+        "qa_confidence": 0.6889315843582153
+      },
+      {
+        "question": "What is the key advantage of a Variational Autoencoder (VAE) over a traditional Autoencoder?",
+        "options": [
+          "VAEs are faster than traditional autoencoders",
+          "VAEs can only compress data",
+          "VAEs can generate new data samples",
+          "VAEs can handle high-dimensional data"
+        ],
+        "correct": 2,
+        "explanation": "VAEs can generate new data samples, making them more powerful than traditional autoencoders.",
+        "sentiment_score": 0.9892548322677612,
+        "qa_confidence": 0.22080900613218546
+      }
+    ],
+    "quiz_id": "gen_49991ea256574ff59dcc8ed7232e8b87"
+  },
+  "gen_3021935037f74cd58adcdeec2ee16593": {
+    "topic": "neural networks",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "question": "What is the main function of an artificial neuron in a neural network?",
+        "options": [
+          "To store data",
+          "To process data",
+          "To analyze data",
+          "To visualize data"
+        ],
+        "correct": 1,
+        "explanation": "An artificial neuron processes the input it receives, performs a computation, and then sends the output to the next layer.",
+        "sentiment_score": 0.9977715611457825,
+        "qa_confidence": 0.47460436820983887
+      },
+      {
+        "question": "What is the name of the process in a neural network where the network learns to adapt to the input data?",
+        "options": [
+          "Training",
+          "Testing",
+          "Validation",
+          "Normalization"
+        ],
+        "correct": 0,
+        "explanation": "The process of adjusting the network's parameters to fit the input data is called training.",
+        "sentiment_score": 0.9951169490814209,
+        "qa_confidence": 0.9865047634521034
+      },
+      {
+        "question": "What is a layer in a neural network where all the neurons are connected to each other?",
+        "options": [
+          "Fully Connected Layer",
+          "Convolutional Layer",
+          "Pooling Layer",
+          "Input Layer"
+        ],
+        "correct": 0,
+        "explanation": "A fully connected layer is a type of layer where all the neurons are connected to each other.",
+        "sentiment_score": 0.9793347120285034,
+        "qa_confidence": 0.6218968629837036
+      },
+      {
+        "question": "What is the purpose of activation functions in a neural network?",
+        "options": [
+          "To prevent overfitting",
+          "To introduce non-linearity",
+          "To speed up computation",
+          "To reduce dimensionality"
+        ],
+        "correct": 1,
+        "explanation": "Activation functions introduce non-linearity into the network, allowing it to learn complex relationships between inputs and outputs.",
+        "sentiment_score": 0.9975142478942871,
+        "qa_confidence": 0.3913331925868988
+      },
+      {
+        "question": "What is the term for the process of splitting the available data into a training set and a test set?",
+        "options": [
+          "Data Augmentation",
+          "Data Normalization",
+          "Data Splitting",
+          "Data Validation"
+        ],
+        "correct": 2,
+        "explanation": "Data splitting is the process of dividing the available data into a training set and a test set for training and testing the network.",
+        "sentiment_score": 0.9983910322189331,
+        "qa_confidence": 0.5061805844306946
+      }
+    ],
+    "quiz_id": "gen_3021935037f74cd58adcdeec2ee16593"
+  }
+}

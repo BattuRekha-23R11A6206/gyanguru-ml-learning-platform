@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %}Code Generation - ML Learning Assistant{% endblock %}
+
+{% block content %}
+<div class="code-generation-page">
+    <h2>Code Generation</h2>
+    <p>Generate production-ready Python code for any ML algorithm or concept</p>
+    
+    <div class="code-container">
+        <div class="input-section">
+            <form id="codeGenerationForm">
+                <div class="form-group">
+                    <label for="algorithm">Algorithm or Concept:</label>
+                    <input type="text" id="algorithm" name="algorithm" 
+                           placeholder="e.g., k-means clustering, LSTM neural network, decision treeimplementation"
+                           required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="codeComplexity">Code Complexity:</label>
+                    <select id="codeComplexity" name="complexity">
+                        <option value="Simple">Simple - Basic Implementation</option>
+                        <option value="Detailed" selected>Detailed - Well Documented</option>
+                        <option value="Production">Production - Enterprise Ready</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-primary">
+                    Generate Code
+                </button>
+            </form>
+        </div>
+        
+        <div class="output-section" id="codeOutputSection" style="display: none;">
+            <div class="loading" id="codeLoadingIndicator" style="display: none;">
+                <p>Generating code...</p>
+                <div class="spinner"></div>
+            </div>
+            
+            <div id="codeOutput">
+                <div class="code-info">
+                    <h3 id="codeTitle">Generated Code</h3>
+                    <div class="dependencies">
+                        <strong>Dependencies:</strong>
+                        <div id="dependenciesList"></div>
+                    </div>
+                </div>
+                
+                <div class="code-editor">
+                    <pre><code id="codeContent"></code></pre>
+                </div>
+                
+                <div class="code-actions">
+                    <button class="btn-secondary" id="copyCodeBtn">Copy Code</button>
+                    <button class="btn-secondary" id="downloadCodeBtn">Download (.py)</button>
+                    <button class="btn-secondary" id="executionGuideBtn">Execution Guide</button>
+                    <button class="btn-secondary" id="colonabBtn">Open in Colab</button>
+                    <button class="btn-secondary" id="nextTopicBtn" style="display: none;">Next Topic</button>
+                </div>
+            </div>
+            
+            <div id="executionGuideSection" style="display: none;">
+                <h3>Execution Guide</h3>
+                <div class="guide-content" id="guideContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.code-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.input-section, .output-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #c0392b;
+}
+
+.code-info {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.dependencies {
+    margin-top: 0.5rem;
+}
+
+#dependenciesList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.3rem;
+}
+
+.dependency-badge {
+    background-color: #3498db;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.code-editor {
+    background: #282c34;
+    color: #abb2bf;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    max-height: 400px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.code-editor pre {
+    margin: 0;
+}
+
+.code-editor code {
+    color: #abb2bf;
+}
+
+.code-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.btn-secondary {
+    flex: 1;
+    padding: 0.8rem;
+    background-color: #95a5a6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+.guide-content {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .code-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .code-actions {
+        flex-direction: column;
+    }
+    
+    .btn-secondary {
+        min-width: unset;
+    }
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/code_generation.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof codeGenerationModule !== 'undefined') {
+            codeGenerationModule.init();
+        }
+    });
+</script>
+{% endblock %}

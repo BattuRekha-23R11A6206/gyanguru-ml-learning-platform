@@ -1,0 +1,216 @@
+{
+  "course": {
+    "title": "Complete Machine Learning Journey",
+    "description": "A comprehensive course covering all aspects of Machine Learning from basics to advanced topics",
+    "modules": [
+      {
+        "id": "ml_basics",
+        "title": "Machine Learning Basics",
+        "description": "Introduction to Machine Learning concepts and fundamentals",
+        "order": 1,
+        "topics": [
+          {
+            "id": "what_is_ml",
+            "title": "What is Machine Learning?",
+            "description": "Understanding ML, types, and applications",
+            "content_type": "text",
+            "estimated_time": 15,
+            "prerequisites": []
+          },
+          {
+            "id": "data_types",
+            "title": "Types of Data and Learning",
+            "description": "Structured vs unstructured data, supervised vs unsupervised learning",
+            "content_type": "text",
+            "estimated_time": 20,
+            "prerequisites": ["what_is_ml"]
+          },
+          {
+            "id": "ml_workflow",
+            "title": "ML Workflow and Process",
+            "description": "Complete ML pipeline from data to deployment",
+            "content_type": "text",
+            "estimated_time": 25,
+            "prerequisites": ["data_types"]
+          }
+        ]
+      },
+      {
+        "id": "data_preprocessing",
+        "title": "Data Preprocessing",
+        "description": "Data cleaning, feature engineering, and preparation",
+        "order": 2,
+        "topics": [
+          {
+            "id": "data_cleaning",
+            "title": "Data Cleaning and Exploration",
+            "description": "Handling missing values, outliers, and data exploration",
+            "content_type": "code",
+            "estimated_time": 30,
+            "prerequisites": ["ml_workflow"]
+          },
+          {
+            "id": "feature_engineering",
+            "title": "Feature Engineering",
+            "description": "Creating and selecting features for ML models",
+            "content_type": "code",
+            "estimated_time": 35,
+            "prerequisites": ["data_cleaning"]
+          },
+          {
+            "id": "data_splitting",
+            "title": "Data Splitting and Validation",
+            "description": "Train-test split, cross-validation techniques",
+            "content_type": "code",
+            "estimated_time": 25,
+            "prerequisites": ["feature_engineering"]
+          }
+        ]
+      },
+      {
+        "id": "supervised_learning",
+        "title": "Supervised Learning",
+        "description": "Regression and classification algorithms",
+        "order": 3,
+        "topics": [
+          {
+            "id": "linear_regression",
+            "title": "Linear Regression",
+            "description": "Simple and multiple linear regression",
+            "content_type": "code",
+            "estimated_time": 40,
+            "prerequisites": ["data_splitting"]
+          },
+          {
+            "id": "logistic_regression",
+            "title": "Logistic Regression",
+            "description": "Binary and multiclass classification",
+            "content_type": "code",
+            "estimated_time": 35,
+            "prerequisites": ["linear_regression"]
+          },
+          {
+            "id": "decision_trees",
+            "title": "Decision Trees and Random Forests",
+            "description": "Tree-based algorithms and ensemble methods",
+            "content_type": "code",
+            "estimated_time": 45,
+            "prerequisites": ["logistic_regression"]
+          },
+          {
+            "id": "svm",
+            "title": "Support Vector Machines",
+            "description": "SVM for classification and regression",
+            "content_type": "code",
+            "estimated_time": 40,
+            "prerequisites": ["decision_trees"]
+          }
+        ]
+      },
+      {
+        "id": "unsupervised_learning",
+        "title": "Unsupervised Learning",
+        "description": "Clustering and dimensionality reduction",
+        "order": 4,
+        "topics": [
+          {
+            "id": "k_means",
+            "title": "K-Means Clustering",
+            "description": "Partitioning clustering algorithm",
+            "content_type": "code",
+            "estimated_time": 35,
+            "prerequisites": ["svm"]
+          },
+          {
+            "id": "hierarchical_clustering",
+            "title": "Hierarchical Clustering",
+            "description": "Agglomerative and divisive clustering",
+            "content_type": "code",
+            "estimated_time": 30,
+            "prerequisites": ["k_means"]
+          },
+          {
+            "id": "pca",
+            "title": "Principal Component Analysis",
+            "description": "Dimensionality reduction technique",
+            "content_type": "code",
+            "estimated_time": 40,
+            "prerequisites": ["hierarchical_clustering"]
+          }
+        ]
+      },
+      {
+        "id": "neural_networks",
+        "title": "Neural Networks and Deep Learning",
+        "description": "Introduction to neural networks and deep learning",
+        "order": 5,
+        "topics": [
+          {
+            "id": "perceptron",
+            "title": "Perceptron and Neural Networks",
+            "description": "Basic neural network concepts",
+            "content_type": "code",
+            "estimated_time": 35,
+            "prerequisites": ["pca"]
+          },
+          {
+            "id": "backpropagation",
+            "title": "Backpropagation",
+            "description": "Training neural networks",
+            "content_type": "code",
+            "estimated_time": 40,
+            "prerequisites": ["perceptron"]
+          },
+          {
+            "id": "cnn",
+            "title": "Convolutional Neural Networks",
+            "description": "CNNs for image processing",
+            "content_type": "code",
+            "estimated_time": 50,
+            "prerequisites": ["backpropagation"]
+          },
+          {
+            "id": "rnn",
+            "title": "Recurrent Neural Networks",
+            "description": "RNNs for sequential data",
+            "content_type": "code",
+            "estimated_time": 45,
+            "prerequisites": ["cnn"]
+          }
+        ]
+      },
+      {
+        "id": "model_evaluation",
+        "title": "Model Evaluation and Deployment",
+        "description": "Evaluating models and deploying to production",
+        "order": 6,
+        "topics": [
+          {
+            "id": "metrics",
+            "title": "Evaluation Metrics",
+            "description": "Accuracy, precision, recall, F1-score, etc.",
+            "content_type": "code",
+            "estimated_time": 35,
+            "prerequisites": ["rnn"]
+          },
+          {
+            "id": "hyperparameter_tuning",
+            "title": "Hyperparameter Tuning",
+            "description": "Grid search, random search, and optimization",
+            "content_type": "code",
+            "estimated_time": 40,
+            "prerequisites": ["metrics"]
+          },
+          {
+            "id": "model_deployment",
+            "title": "Model Deployment",
+            "description": "Deploying ML models to production",
+            "content_type": "code",
+            "estimated_time": 45,
+            "prerequisites": ["hyperparameter_tuning"]
+          }
+        ]
+      }
+    ]
+  }
+}

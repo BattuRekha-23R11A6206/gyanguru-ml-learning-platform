@@ -1,0 +1,439 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz - {{ topic|title }} - ML Learning Assistant{% endblock %}
+
+{% block content %}
+<div class="quiz-page">
+    <h2>Quiz: {{ topic|title }}</h2>
+    <p>Test your knowledge on {{ topic }} and earn progress points!</p>
+
+    <div class="quiz-container">
+        <div class="quiz-loading" id="quizLoading" style="display: none;">
+            <p>Loading quiz...</p>
+            <div class="spinner"></div>
+        </div>
+
+        <div class="quiz-content" id="quizContent" style="display: none;">
+            <div class="quiz-header">
+                <h3 id="quizTitle">Quiz</h3>
+                <div class="quiz-progress">
+                    <span id="currentQuestion">1</span> / <span id="totalQuestions">5</span>
+                </div>
+            </div>
+
+            <div class="question-container" id="questionContainer">
+                <!-- Questions will be loaded here -->
+            </div>
+
+            <div class="quiz-navigation">
+                <button id="prevBtn" class="btn-secondary" style="display: none;">Previous</button>
+                <button id="nextBtn" class="btn-primary">Next</button>
+                <button id="submitBtn" class="btn-primary" style="display: none;">Submit Quiz</button>
+            </div>
+        </div>
+
+        <div class="quiz-results" id="quizResults" style="display: none;">
+            <h3>Quiz Results</h3>
+            <div class="results-summary" id="resultsSummary">
+                <!-- Results will be shown here -->
+            </div>
+            <div class="error-teaching" id="errorTeaching" style="display: none;">
+                <h4>Review and Learn</h4>
+                <div id="teachingContent"></div>
+            </div>
+            <div class="quiz-actions">
+                <button id="retakeBtn" class="btn-secondary">Retake Quiz</button>
+                <a href="/progress" class="btn-primary">Back to Progress</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.quiz-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.quiz-progress {
+    font-size: 1.1rem;
+    color: #667eea;
+}
+
+.question-container {
+    margin-bottom: 2rem;
+}
+
+.question {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.question h4 {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.option {
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.option:hover {
+    border-color: #667eea;
+    background: #f0f2ff;
+}
+
+.option.selected {
+    border-color: #667eea;
+    background: #e8f0ff;
+}
+
+.quiz-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.results-summary {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.result-item.correct {
+    color: #28a745;
+}
+
+.result-item.incorrect {
+    color: #dc3545;
+}
+
+.error-teaching {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.quiz-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 1rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .quiz-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .quiz-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Quiz Module
+const quizModule = {
+    currentTopic: '{{ topic }}',
+    quizId: null,
+    quizData: null,
+    currentQuestionIndex: 0,
+    answers: [],
+    results: null,
+
+    init: function() {
+        console.log('Quiz module initialized for topic:', this.currentTopic);
+        this.attachEventListeners();
+        this.loadQuiz();
+    },
+
+    attachEventListeners: function() {
+        document.getElementById('nextBtn').addEventListener('click', () => this.nextQuestion());
+        document.getElementById('prevBtn').addEventListener('click', () => this.prevQuestion());
+        document.getElementById('submitBtn').addEventListener('click', () => this.submitQuiz());
+        document.getElementById('retakeBtn').addEventListener('click', () => this.retakeQuiz());
+    },
+
+    loadQuiz: async function() {
+        const loadingDiv = document.getElementById('quizLoading');
+        const contentDiv = document.getElementById('quizContent');
+
+        loadingDiv.style.display = 'block';
+
+        try {
+            const token = localStorage.getItem('auth_token');
+            const headers = {
+                'Content-Type': 'application/json'
+            };
+            if (token) headers['Authorization'] = `Bearer ${token}`;
+
+            const response = await fetch('/api/quiz/generate', {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({
+                    topic: this.currentTopic,
+                    difficulty: 'Beginner',
+                    num_questions: 5
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success && data.quiz) {
+                this.quizData = data.quiz;
+                this.quizId = data.quiz_id || (data.quiz && data.quiz.quiz_id) || null;
+                this.answers = new Array(this.quizData.questions.length).fill(null);
+                this.renderQuiz();
+                loadingDiv.style.display = 'none';
+                contentDiv.style.display = 'block';
+            } else {
+                throw new Error(data.error || 'Failed to load quiz');
+            }
+        } catch (error) {
+            console.error('Error loading quiz:', error);
+            loadingDiv.innerHTML = '<p>Error loading quiz. Please try again.</p>';
+        }
+    },
+
+    renderQuiz: function() {
+        document.getElementById('quizTitle').textContent = this.quizData.topic;
+        document.getElementById('totalQuestions').textContent = this.quizData.questions.length;
+        this.renderCurrentQuestion();
+        this.updateNavigation();
+    },
+
+    renderCurrentQuestion: function() {
+        const question = this.quizData.questions[this.currentQuestionIndex];
+        const container = document.getElementById('questionContainer');
+
+        container.innerHTML = `
+            <div class="question">
+                <h4>${question.question}</h4>
+                <div class="options">
+                    ${question.options.map((option, index) => `
+                        <div class="option ${this.answers[this.currentQuestionIndex] === index ? 'selected' : ''}"
+                             data-index="${index}"
+                             onclick="quizModule.selectOption(${index})">
+                            ${String.fromCharCode(65 + index)}. ${option}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+
+        document.getElementById('currentQuestion').textContent = this.currentQuestionIndex + 1;
+    },
+
+    selectOption: function(optionIndex) {
+        this.answers[this.currentQuestionIndex] = optionIndex;
+        this.renderCurrentQuestion();
+        this.updateNavigation();
+    },
+
+    updateNavigation: function() {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+
+        prevBtn.style.display = this.currentQuestionIndex > 0 ? 'block' : 'none';
+        nextBtn.style.display = this.currentQuestionIndex < this.quizData.questions.length - 1 ? 'block' : 'none';
+        submitBtn.style.display = this.currentQuestionIndex === this.quizData.questions.length - 1 ? 'block' : 'none';
+    },
+
+    nextQuestion: function() {
+        if (this.currentQuestionIndex < this.quizData.questions.length - 1) {
+            this.currentQuestionIndex++;
+            this.renderCurrentQuestion();
+            this.updateNavigation();
+        }
+    },
+
+    prevQuestion: function() {
+        if (this.currentQuestionIndex > 0) {
+            this.currentQuestionIndex--;
+            this.renderCurrentQuestion();
+            this.updateNavigation();
+        }
+    },
+
+    submitQuiz: async function() {
+        if (this.answers.includes(null)) {
+            alert('Please answer all questions before submitting.');
+            return;
+        }
+
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        try {
+            const token = localStorage.getItem('auth_token');
+            const headers = {
+                'Content-Type': 'application/json'
+            };
+            if (token) headers['Authorization'] = `Bearer ${token}`;
+
+            const response = await fetch('/api/quiz/submit', {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({
+                    quiz_id: this.quizId || (this.quizData && this.quizData.quiz_id) || this.currentTopic,
+                    topic: this.currentTopic,
+                    answers: this.answers,
+                    time_taken: 0
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                this.results = data;
+                this.showResults();
+            } else {
+                throw new Error(data.error || 'Failed to submit quiz');
+            }
+        } catch (error) {
+            console.error('Error submitting quiz:', error);
+            alert('Error submitting quiz. Please try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Quiz';
+        }
+    },
+
+    showResults: function() {
+        document.getElementById('quizContent').style.display = 'none';
+        const resultsDiv = document.getElementById('quizResults');
+        resultsDiv.style.display = 'block';
+
+        const summaryDiv = document.getElementById('resultsSummary');
+        summaryDiv.innerHTML = `
+            <div class="result-item">
+                <strong>Score:</strong>
+                <span>${this.results.score}% (${this.results.correct_answers}/${this.results.total_questions})</span>
+            </div>
+            <div class="result-item ${this.results.passed ? 'correct' : 'incorrect'}">
+                <strong>Status:</strong>
+                <span>${this.results.passed ? 'Passed' : 'Needs Improvement'}</span>
+            </div>
+        `;
+
+        // Show detailed results
+        (this.results.detailed_results || this.results.results || []).forEach(result => {
+            summaryDiv.innerHTML += `
+                <div class="result-item ${result.is_correct ? 'correct' : 'incorrect'}">
+                    <span>${result.question}</span>
+                    <span>${result.is_correct ? '✓' : '✗'}</span>
+                </div>
+            `;
+        });
+
+        // If failed, show error-based teaching
+        if (!this.results.passed) {
+            this.loadErrorTeaching();
+        }
+    },
+
+    loadErrorTeaching: async function() {
+        const teachingDiv = document.getElementById('errorTeaching');
+        teachingDiv.style.display = 'block';
+
+        const incorrectQuestions = (this.results.detailed_results || this.results.results || []).filter(r => !r.is_correct);
+
+        try {
+            const response = await fetch('/api/error-teaching', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    topic: this.currentTopic,
+                    incorrect_questions: incorrectQuestions
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                document.getElementById('teachingContent').innerHTML = data.teaching.replace(/\n/g, '<br>');
+            } else {
+                document.getElementById('teachingContent').innerHTML = 'Error loading teaching content.';
+            }
+        } catch (error) {
+            console.error('Error loading error teaching:', error);
+            document.getElementById('teachingContent').innerHTML = 'Error loading teaching content.';
+        }
+    },
+
+    retakeQuiz: function() {
+        this.currentQuestionIndex = 0;
+        this.answers = new Array(this.quizData.questions.length).fill(null);
+        this.results = null;
+
+        document.getElementById('quizResults').style.display = 'none';
+        document.getElementById('errorTeaching').style.display = 'none';
+        document.getElementById('quizContent').style.display = 'block';
+
+        this.renderQuiz();
+    }
+};
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    quizModule.init();
+});
+</script>
+{% endblock %}

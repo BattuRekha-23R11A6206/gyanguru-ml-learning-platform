@@ -1,0 +1,938 @@
+{% extends "base.html" %}
+
+{% block title %}Learning Progress - ML Learning Assistant{% endblock %}
+
+{% block content %}
+<style>
+/* Card styling with glass effect */
+.summary-card, .next-topic-card, .roadmap-container, .module-card {
+    background: rgba(25, 28, 36, 0.7) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.roadmap-module-content {
+    background: rgba(35, 38, 46, 0.6) !important;
+    border-radius: 8px;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+/* Text styling for better visibility */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+}
+
+.progress-subtitle, .module-progress-text, .roadmap-topic, .topic-content p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.stat-number, .stat-label, .progress-text {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Card specific text */
+.summary-content h3, .module-title h3, .module-status {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Progress bars */
+.progress-bar {
+    background: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #4f46e5, #7c3aed) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+    color: white !important;
+    border: none !important;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4) !important;
+}
+
+/* Module cards */
+.module-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.module-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+}
+</style>
+<div class="progress-dashboard">
+    <div class="container">
+        <div class="progress-header">
+            <h1>📚 Your ML Learning Journey</h1>
+            <p class="progress-subtitle">Track your progress through the complete Machine Learning course</p>
+        </div>
+
+        <!-- Overall Progress Summary -->
+        <div class="progress-summary">
+            <div class="summary-card">
+                <div class="summary-icon">🎯</div>
+                <div class="summary-content">
+                    <h3>Overall Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="overallProgress" style="width: 0%"></div>
+                    </div>
+                    <p class="progress-text" id="overallProgressText">Loading...</p>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon">📖</div>
+                <div class="summary-content">
+                    <h3>Topics Completed</h3>
+                    <div class="progress-stats">
+                        <span class="stat-number" id="topicsCompleted">0</span>
+                        <span class="stat-label">of</span>
+                        <span class="stat-number" id="totalTopics">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon">🏆</div>
+                <div class="summary-content">
+                    <h3>Modules Completed</h3>
+                    <div class="progress-stats">
+                        <span class="stat-number" id="modulesCompleted">0</span>
+                        <span class="stat-label">of</span>
+                        <span class="stat-number" id="totalModules">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon">📊</div>
+                <div class="summary-content">
+                    <h3>Quiz Performance</h3>
+                    <div class="progress-stats">
+                        <span class="stat-number" id="quizzesTaken">0</span>
+                        <span class="stat-label">quizzes taken</span>
+                    </div>
+                    <div class="quiz-average" id="quizAverage">Average: 0%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next Recommended Topic -->
+        <div class="next-topic-section">
+            <h2>🎯 Next Recommended Topic</h2>
+            <div class="next-topic-card" id="nextTopicCard">
+                <div class="loading-spinner">Loading next topic...</div>
+            </div>
+        </div>
+
+        <!-- Learning Roadmap -->
+        <div class="learning-roadmap">
+            <h2>�️ Your Learning Roadmap</h2>
+            <p>Visual progress through the complete ML curriculum</p>
+            <div class="roadmap-container" id="roadmapContainer">
+                <!-- Roadmap will be generated here -->
+            </div>
+        </div>
+
+        <!-- Progress Actions -->
+        <div class="progress-actions">
+            <button class="btn-primary" onclick="refreshProgress()">
+                🔄 Refresh
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+.progress-dashboard {
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.progress-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: white;
+}
+
+.progress-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.progress-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.progress-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.summary-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+}
+
+.summary-icon {
+    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    color: white;
+}
+
+.summary-content h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    font-weight: 600;
+    color: #667eea;
+    font-size: 0.9rem;
+}
+
+.progress-stats {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.quiz-average {
+    font-size: 0.9rem;
+    color: #667eea;
+    margin-top: 0.5rem;
+}
+
+.next-topic-section {
+    margin-bottom: 3rem;
+}
+
+.next-topic-section h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.next-topic-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.next-topic-card h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.next-topic-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.course-modules h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.learning-roadmap {
+    margin-bottom: 3rem;
+}
+
+.learning-roadmap h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.learning-roadmap p {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.roadmap-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.roadmap-path {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+}
+
+.roadmap-path::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #667eea, #764ba2);
+    transform: translateX(-50%);
+    border-radius: 2px;
+    z-index: 1;
+}
+
+.roadmap-module {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.roadmap-module:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.roadmap-module-content {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e0e0e0;
+    flex: 1;
+    margin: 0 2rem;
+    transition: all 0.3s ease;
+}
+
+.roadmap-module.completed .roadmap-module-content {
+    border-color: #28a745;
+    background: #d4edda;
+}
+
+.roadmap-module.in-progress .roadmap-module-content {
+    border-color: #ffc107;
+    background: #fff3cd;
+}
+
+.roadmap-module-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.roadmap-module h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.roadmap-module p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.roadmap-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.roadmap-topic {
+    background: #f8f9fa;
+    padding: 0.5rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #666;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.roadmap-topic.completed {
+    background: #d4edda;
+    color: #155724;
+    border-color: #28a745;
+}
+
+.roadmap-topic.available {
+    background: #fff3cd;
+    color: #856404;
+    border-color: #ffc107;
+    cursor: pointer;
+}
+
+.roadmap-topic.available:hover {
+    background: #ffeaa7;
+}
+
+.roadmap-connector {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background: #667eea;
+    border: 4px solid white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.roadmap-module.completed .roadmap-connector {
+    background: #28a745;
+}
+
+.roadmap-module.in-progress .roadmap-connector {
+    background: #ffc107;
+}
+
+.module-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.module-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.module-title h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.4rem;
+}
+
+.module-status {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.module-status.completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.module-status.in-progress {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.module-status.locked {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.module-progress {
+    margin-bottom: 1.5rem;
+}
+
+.module-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.module-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.module-progress-text {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: right;
+}
+
+.topics-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.topic-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.topic-item.completed {
+    background: #d4edda;
+    border-left: 4px solid #28a745;
+}
+
+.topic-item.available {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    cursor: pointer;
+}
+
+.topic-item.available:hover {
+    background: #ffeaa7;
+    transform: translateX(5px);
+}
+
+.topic-item.locked {
+    background: #f8d7da;
+    border-left: 4px solid #dc3545;
+    opacity: 0.6;
+}
+
+.topic-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+}
+
+.topic-checkbox.completed {
+    background: #28a745;
+    border-color: #28a745;
+}
+
+.topic-checkbox.available {
+    background: #ffc107;
+    border-color: #ffc107;
+}
+
+.topic-checkbox.locked {
+    background: #dc3545;
+    border-color: #dc3545;
+}
+
+.topic-content {
+    flex: 1;
+}
+
+.topic-content h4 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.topic-content p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.topic-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.progress-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.9);
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.btn-secondary:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .progress-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .progress-header h1 {
+        font-size: 2rem;
+    }
+
+    .module-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let courseProgress = null;
+
+async function loadProgress() {
+    try {
+        const response = await fetch('/api/course-progress');
+        const data = await response.json();
+
+        if (data.success) {
+            courseProgress = data.progress;
+            updateProgressUI();
+        } else {
+            console.error('Failed to load progress:', data.error);
+        }
+    } catch (error) {
+        console.error('Error loading progress:', error);
+    }
+}
+
+function updateProgressUI() {
+    if (!courseProgress) return;
+
+    // Update summary stats
+    const overallProgressEl = document.getElementById('overallProgress');
+    const overallProgressTextEl = document.getElementById('overallProgressText');
+    const topicsCompletedEl = document.getElementById('topicsCompleted');
+    const totalTopicsEl = document.getElementById('totalTopics');
+    const modulesCompletedEl = document.getElementById('modulesCompleted');
+    const totalModulesEl = document.getElementById('totalModules');
+    const timeSpentEl = document.getElementById('timeSpent');
+
+    if (overallProgressEl) overallProgressEl.style.width = courseProgress.progress_percentage + '%';
+    if (overallProgressTextEl) overallProgressTextEl.textContent = courseProgress.progress_percentage + '% Complete';
+    if (topicsCompletedEl) topicsCompletedEl.textContent = courseProgress.completed_topics;
+    if (totalTopicsEl) totalTopicsEl.textContent = courseProgress.total_topics;
+    if (modulesCompletedEl) modulesCompletedEl.textContent = courseProgress.completed_modules;
+    if (totalModulesEl) totalModulesEl.textContent = courseProgress.total_modules;
+    if (timeSpentEl) timeSpentEl.textContent = formatTime(courseProgress.total_time_spent);
+
+    // Update quiz stats
+    const quizScores = courseProgress.quiz_scores || {};
+    const quizCount = Object.keys(quizScores).length;
+    const averageScore = quizCount > 0 ? Object.values(quizScores).reduce((a, b) => a + b, 0) / quizCount : 0;
+    const quizzesTakenEl = document.getElementById('quizzesTaken');
+    const quizAverageEl = document.getElementById('quizAverage');
+    if (quizzesTakenEl) quizzesTakenEl.textContent = quizCount;
+    if (quizAverageEl) quizAverageEl.textContent = 'Average: ' + Math.round(averageScore) + '%';
+
+    // Update next topic
+    updateNextTopic();
+
+    // Update modules
+    updateModules();
+}
+
+function updateNextTopic() {
+    const nextTopicCard = document.getElementById('nextTopicCard');
+
+    fetch('/api/next-topic')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.next_topic) {
+                const topic = data.next_topic.topic;
+                const module = data.next_topic.module;
+
+                nextTopicCard.innerHTML = `
+                    <h3>${topic.title}</h3>
+                    <p>${topic.description}</p>
+                    <p><strong>Module:</strong> ${module.title}</p>
+                    <p><strong>Estimated Time:</strong> ${topic.estimated_time} minutes</p>
+                    <button class="btn-primary" onclick="navigateToTopic('${topic.id}', '${topic.content_type}')">
+                        Start Learning 🚀
+                    </button>
+                `;
+            } else {
+                nextTopicCard.innerHTML = `
+                    <h3>🎉 Congratulations!</h3>
+                    <p>You've completed all available topics in the course!</p>
+                    <p>Check back later for new content or review completed topics.</p>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error('Error loading next topic:', error);
+            nextTopicCard.innerHTML = '<p>Error loading next topic. Please refresh the page.</p>';
+        });
+}
+
+function updateModules() {
+    const modulesGrid = document.getElementById('modulesGrid');
+    const modules = courseProgress.modules;
+
+    modulesGrid.innerHTML = modules.map(module => `
+        <div class="module-card">
+            <div class="module-header">
+                <div class="module-title">
+                    <div class="module-icon">${getModuleIcon(module.id)}</div>
+                    <h3>${module.title}</h3>
+                </div>
+                <div class="module-status ${getModuleStatus(module)}">
+                    ${getModuleStatusText(module)}
+                </div>
+            </div>
+
+            <div class="module-progress">
+                <div class="module-progress-bar">
+                    <div class="module-progress-fill" style="width: ${(module.completed_topics / module.total_topics) * 100}%"></div>
+                </div>
+                <div class="module-progress-text">
+                    ${module.completed_topics} of ${module.total_topics} topics completed
+                </div>
+            </div>
+
+            <div class="topics-list">
+                ${module.topics.map(topic => `
+                    <div class="topic-item ${getTopicStatus(topic)}" ${(getTopicStatus(topic) === 'locked') ? '' : `onclick="navigateToTopic('${topic.id}', '${topic.content_type}')"`}>
+                        <div class="topic-checkbox ${getTopicStatus(topic)}">
+                            ${topic.completed ? '✓' : getTopicIcon(topic.content_type)}
+                        </div>
+                        <div class="topic-content">
+                            <h4>${topic.title}</h4>
+                            <p>${topic.description}</p>
+                            <div class="topic-meta">
+                                <span>${topic.estimated_time} min</span>
+                                <span>${topic.content_type}</span>
+                            </div>
+                            ${topic.completed ? `<button class="btn-secondary" onclick="takeQuiz('${topic.id}')">Take Quiz</button>` : ''}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+
+    // Generate roadmap after modules are loaded
+    generateRoadmap();
+}
+
+function generateRoadmap() {
+    const roadmapContainer = document.getElementById('roadmapContainer');
+    const modules = courseProgress.modules;
+
+    roadmapContainer.innerHTML = `
+        <div class="roadmap-path">
+            ${modules.map((module, index) => {
+                const moduleStatus = getModuleStatus(module);
+                const moduleIcon = getModuleIcon(module.id);
+                
+                return `
+                    <div class="roadmap-module ${moduleStatus}">
+                        <div class="roadmap-module-content">
+                            <div class="roadmap-module-icon">${moduleIcon}</div>
+                            <h3>${module.title}</h3>
+                            <p>${module.description || 'Master key concepts in this module'}</p>
+                            <div class="roadmap-topics">
+                                ${module.topics.map(topic => {
+                                    const topicStatus = getTopicStatus(topic);
+                                    return `<span class="roadmap-topic ${topicStatus}" ${topicStatus === 'available' || topicStatus === 'completed' ? `onclick="navigateToTopic('${topic.id}', '${topic.content_type}')"` : ''}>${topic.title}</span>`;
+                                }).join('')}
+                            </div>
+                        </div>
+                        <div class="roadmap-connector"></div>
+                    </div>
+                `;
+            }).join('')}
+        </div>
+    `;
+}
+
+function getModuleIcon(moduleId) {
+    const icons = {
+        'ml_basics': '🤖',
+        'data_preprocessing': '🧹',
+        'supervised_learning': '🎯',
+        'unsupervised_learning': '🔍',
+        'neural_networks': '🧠',
+        'model_evaluation': '📊'
+    };
+    return icons[moduleId] || '📚';
+}
+
+function getModuleStatus(module) {
+    if (module.completed) return 'completed';
+    if (module.completed_topics > 0) return 'in-progress';
+    return 'locked';
+}
+
+function getModuleStatusText(module) {
+    if (module.completed) return 'Completed';
+    if (module.completed_topics > 0) return 'In Progress';
+    return 'Not Started';
+}
+
+function getTopicStatus(topic) {
+    if (topic.completed) return 'completed';
+    // Check if prerequisites are met
+    const prerequisites = topic.prerequisites || [];
+    const allPrereqsMet = prerequisites.every(prereq =>
+        courseProgress.topics_completed.includes(prereq)
+    );
+    return allPrereqsMet ? 'available' : 'locked';
+}
+
+function getTopicIcon(contentType) {
+    const icons = {
+        'text': '📖',
+        'code': '💻',
+        'audio': '🎧',
+        'image': '🖼️'
+    };
+    return icons[contentType] || '📄';
+}
+
+function navigateToTopic(topicId, contentType) {
+    // Map topic IDs to page routes
+    const routes = {
+        'text': '/text-explanation',
+        'code': '/code-generation',
+        'audio': '/audio-learning',
+        'image': '/image-visualization'
+    };
+
+    const route = routes[contentType] || '/';
+    window.location.href = route + '?topic=' + encodeURIComponent(topicId);
+}
+
+function takeQuiz(topicId) {
+    window.location.href = '/quiz/' + encodeURIComponent(topicId);
+}
+
+function formatTime(minutes) {
+    if (minutes < 60) {
+        return minutes + ' minutes';
+    } else {
+        const hours = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+        return hours + 'h ' + mins + 'm';
+    }
+}
+
+async function refreshProgress() {
+    await loadProgress();
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    loadProgress();
+});
+</script>
+{% endblock %}
